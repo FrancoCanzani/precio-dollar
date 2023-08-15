@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --theme-navbar-height: 60px;
+  --theme-mobile-toc-height: 80px;
+  --theme-bg-gradient-top: #0f4d51;
+  --theme-bg-gradient-bottom: #0f4d51;
+  --theme-bg-gradient: linear-gradient(
+    180deg,
+    var(--theme-bg-gradient-top),
+    var(--theme-bg-gradient-top)
+      calc(var(--theme-navbar-height) + var(--theme-mobile-toc-height)),
+    var(--theme-bg-gradient-bottom)
+  );
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: var(--theme-bg-gradient);
+}
