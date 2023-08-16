@@ -2,26 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --theme-navbar-height: 60px;
-  --theme-mobile-toc-height: 80px;
-  --theme-bg-gradient-top: #0f4d51;
-  --theme-bg-gradient-bottom: #0f4d51;
-  --theme-bg-gradient: linear-gradient(
-    180deg,
-    var(--theme-bg-gradient-top),
-    var(--theme-bg-gradient-top)
-      calc(var(--theme-navbar-height) + var(--theme-mobile-toc-height)),
-    var(--theme-bg-gradient-bottom)
-  );
+.slider {
+  background: white;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+.slider::before,
+.slider::after {
+  content: '';
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  -webkit-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slider .slide-track {
+  animation: scroll 80s linear infinite;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background: var(--theme-bg-gradient);
+  width: calc(1000px * 18);
+}
+
+.slider .slide-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 9));
+  }
 }

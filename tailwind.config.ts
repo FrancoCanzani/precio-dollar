@@ -21,6 +21,9 @@ const config: Config = {
         'dollar-900': '#0e5935',
         'dollar-950': '#01321b',
       },
+      fontFamily: {
+        sans: ['var(--font-basier-square)'],
+      },
     },
   },
   plugins: [],
