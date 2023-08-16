@@ -20,15 +20,35 @@ export default async function Home() {
   return (
     <main className='min-h-screen flex flex-col items-center justify-between'>
       <Header />
-      <h1 className='uppercase text-6xl w-full text-center p-6 font-black'>
+      <h1 className='uppercase text-6xl w-full text-center p-4 font-black'>
         Valor del{' '}
         <span className='bg-gradient-to-r from-dollar-500 to-indigo-500 bg-clip-text text-transparent'>
           dólar
         </span>{' '}
         hoy
       </h1>
-      <section className='grid px-24 py-6 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
-        {dollarData.map((dollar: DollarData) => (
+      <section className='flex items-center gap-5 xl:px-24 py-4'>
+        {dollarData.slice(0, 2).map((dollar: DollarData) => (
+          <div
+            key={dollar.casa}
+            className='flex-col px-4 xl:px-11 py-2 justify-center items-center border border-solid rounded-[4px] flex font-medium transition duration-150 text-white bg-[#007780]'
+          >
+            <span className='uppercase font-bold text-xl w-full mb-3 text-center'>{`Dólar ${dollar.casa}`}</span>
+            <div className='flex space-x-10 '>
+              <div className='flex flex-col items-center'>
+                <span className='text-xl'>Compra</span>
+                <span className='italic'>{`$${dollar.compra}`}</span>
+              </div>
+              <div className='flex flex-col items-center'>
+                <span className='text-xl'>Venta</span>
+                <span className='italic'>{`$${dollar.venta}`}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+      <section className='grid xl:px-24 py-4 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
+        {dollarData.slice(2).map((dollar: DollarData) => (
           <DollarCard key={dollar.venta} data={dollar} />
         ))}
       </section>

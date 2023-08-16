@@ -1,26 +1,5 @@
 const KEY = process.env.NEWS_KEY;
-
-type Source = {
-  id: string | null;
-  name: string;
-};
-
-type Article = {
-  source: Source;
-  author: string;
-  title: string;
-  description: string | null;
-  url: string;
-  urlToImage: string | null;
-  publishedAt: string;
-  content: string | null;
-};
-
-type NewsResponse = {
-  status: 'ok' | 'error';
-  totalResults: number;
-  articles: Article[];
-};
+import { Source, Article, NewsResponse } from '../utils/types';
 
 async function getNews(): Promise<NewsResponse | null> {
   try {
