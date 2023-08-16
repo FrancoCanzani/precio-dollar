@@ -1,13 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Inter } from 'next/font/google';
 
-const basierSquare = localFont({
-  src: '../../public/fonts/Basier_Regular/Basier Regular Webfont/Basier-Square-regular-webfont/basiersquare-regular-webfont.woff',
-  display: 'swap',
-  weight: '400',
-  variable: '--font-basier-square',
-});
+const inter = Inter({ subsets: ['latin'] });
+
 export const metadata: Metadata = {
   title: 'Valor Dolar Hoy',
   description: 'Valor de los tipos de cambio en Argentina',
@@ -20,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${basierSquare.variable} font-sans`}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
