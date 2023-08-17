@@ -33,21 +33,21 @@ export default async function Home() {
             key={dollar.casa}
             className='flex-col px-4 xl:px-11 py-2 justify-center items-center border border-solid rounded-[4px] flex font-medium transition duration-150 text-white bg-[#007780]'
           >
-            <span className='uppercase font-bold text-xl w-full mb-3 text-center'>{`Dólar ${dollar.casa}`}</span>
-            <div className='flex space-x-10 '>
+            <span className='uppercase font-bold lg:text-xl w-full mb-3 text-center'>{`Dólar ${dollar.casa}`}</span>
+            <div className='flex space-x-5 lg:space-x-10 '>
               <div className='flex flex-col items-center'>
-                <span className='text-xl'>Compra</span>
+                <span className='lg:text-xl'>Compra</span>
                 <span className='italic'>{`$${dollar.compra}`}</span>
               </div>
               <div className='flex flex-col items-center'>
-                <span className='text-xl'>Venta</span>
+                <span className='lg:text-xl'>Venta</span>
                 <span className='italic'>{`$${dollar.venta}`}</span>
               </div>
             </div>
           </div>
         ))}
       </section>
-      <section className='grid xl:px-24 py-4 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
+      <section className='grid xl:px-24 py-4 grid-cols-1 gap-4 md:grid-cols-2'>
         {dollarData.slice(2).map((dollar: DollarData) => (
           <DollarCard key={dollar.venta} data={dollar} />
         ))}
