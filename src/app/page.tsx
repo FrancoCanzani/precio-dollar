@@ -20,33 +20,33 @@ export default async function Home() {
   return (
     <main className='min-h-screen flex flex-col items-center justify-between'>
       <Header />
-      <h1 className='uppercase text-6xl w-full text-center p-4 font-black'>
+      <h1 className='uppercase text-5xl w-full text-center px-4 py-6 font-black'>
         Valor del{' '}
-        <span className='bg-gradient-to-r from-dollar-500 to-indigo-500 bg-clip-text text-transparent'>
+        <span className='bg-gradient-to-t from-dollar-400 to-teal-400 bg-clip-text text-transparent'>
           dólar
         </span>{' '}
         hoy
       </h1>
-      <section className='flex items-center gap-5 xl:px-24 py-4'>
+      <div className='flex items-center bg-dollar-100 border border-dollar-200 flex-col md:flex-row justify-center md:justify-between shadow-md rounded-md md:space-x-3 px-3 xl:px-6 py-2'>
         {dollarData.slice(0, 2).map((dollar: DollarData) => (
           <div
             key={dollar.casa}
-            className='flex-col px-4 xl:px-11 py-2 justify-center items-center border border-solid rounded-[4px] flex font-medium transition duration-150 text-white bg-[#007780]'
+            className='px-4 xl:px-8 py-1 rounded-md mb-4 md:mb-0 min-w-full md:min-w-fit justify-center md:justify-between items-center xl:space-x-8 flex transition duration-150'
           >
-            <span className='uppercase font-bold lg:text-xl w-full mb-3 text-center'>{`Dólar ${dollar.casa}`}</span>
+            <span className='uppercase font-bold lg:text-xl mr-3 w-full text-center'>{`Dólar ${dollar.casa}`}</span>
             <div className='flex space-x-5 lg:space-x-10 '>
-              <div className='flex flex-col items-center'>
-                <span className='lg:text-xl'>Compra</span>
+              <div className='flex flex-col items-center px-2 py-1 rounded-md'>
+                <span className='lg:text-xl font-semibold'>Compra</span>
                 <span className='italic'>{`$${dollar.compra}`}</span>
               </div>
-              <div className='flex flex-col items-center'>
-                <span className='lg:text-xl'>Venta</span>
+              <div className='flex flex-col items-center px-2 py-1 rounded-md'>
+                <span className='lg:text-xl font-semibold'>Venta</span>
                 <span className='italic'>{`$${dollar.venta}`}</span>
               </div>
             </div>
           </div>
         ))}
-      </section>
+      </div>
       <section className='grid xl:px-24 py-4 grid-cols-1 gap-4 md:grid-cols-2'>
         {dollarData.slice(2).map((dollar: DollarData) => (
           <DollarCard key={dollar.venta} data={dollar} />
