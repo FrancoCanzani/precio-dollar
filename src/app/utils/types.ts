@@ -1,5 +1,5 @@
 type DollarData = {
-  compra: string | null;
+  compra: number | null;
   venta: number;
   casa: string;
   nombre: string;

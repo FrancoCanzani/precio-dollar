@@ -1,29 +1,22 @@
 import { DollarData } from '../utils/types';
 
 export default function DollarCard({ data }: { data: DollarData }) {
+  // Define a variable to hold the content for the <h2> element
+  const h2Content =
+    data.nombre === 'Contado con liquidación'
+      ? 'CCL'
+      : data.nombre === 'Solidario (Turista)'
+      ? 'Turista'
+      : data.nombre;
+
   return (
-    <div
-      className='h-52 bg-dollar-50 flex items-center justify-evenly flex-col rounded-lg m-2 p-6 shadow-md'
-      style={{
-        backgroundImage:
-          'url(https://www.cypress.io/images/tweets/teal-card.svg)',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <h2 className='uppercase rounded-lg text-dollar-950 font-bold xl:text-2xl text-xl text-center'>{`Dólar ${data.nombre}`}</h2>
-      <div className='flex space-x-10'>
-        {data.compra && (
-          <div className='flex flex-col items-center'>
-            <span className='text-xl font-semibold'>Compra</span>
-            <span className='italic'>{`$${data.compra}`}</span>
-          </div>
-        )}
-        <div className='flex flex-col items-center'>
-          <span className='text-xl font-semibold'>Venta</span>
-          <span className='italic'>{`$${data.venta}`}</span>
-        </div>
-      </div>
+    <div className='border flex items-start justify-evenly flex-col rounded-lg p-4 px-6 shadow-md'>
+      <h4 className='uppercase rounded-lg text-[#0f172a] font-normal text-sm'>
+        {h2Content}
+      </h4>
+      <p className='italic mb-2 mt-6 text-2xl font-bold'>{`$${data.venta.toFixed(
+        1
+      )}`}</p>
     </div>
   );
 }

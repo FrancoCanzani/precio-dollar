@@ -1,4 +1,6 @@
 export default function convertDate(dateString: string): string {
-  const hora = dateString.split('T');
-  return hora[0] + ' ' + hora[1];
+  const parts = dateString.split('T');
+  const datePart = parts[0];
+  const timePart = parts[1].slice(0, 8);
+  return `${datePart} ${timePart}`;
 }
