@@ -10,7 +10,7 @@ export default function DollarCard({ data }: { data: DollarData }) {
       : data.nombre;
 
   return (
-    <div className='border flex items-start justify-evenly flex-col rounded-lg p-4 px-6 shadow-md'>
+    <div className='border flex items-start justify-evenly flex-col rounded-lg p-4 px-6 shadow-sm hover:shadow-md'>
       <h4 className='uppercase rounded-lg text-[#0f172a] font-normal text-sm'>
         {h2Content}
       </h4>

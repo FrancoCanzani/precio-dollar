@@ -3,6 +3,8 @@ import { DollarData } from './utils/types';
 import Header from './components/header';
 import convertDate from './utils/functions/convertDate';
 
+const EXCHANGE_KEY = process.env.EXCHANGE_KEY;
+
 async function getDollarData() {
   const res = await fetch('https://dolar-api-argentina.vercel.app/v1/dolares', {
     next: { revalidate: 1800 },
@@ -29,7 +31,7 @@ export default async function Home() {
           </span>{' '}
           hoy
         </h1>
-        <h2 className='max-w-[60ch] text-[#64748b] text-center text-lg leading-normal'>
+        <h2 className='max-w-[60ch] text-[#64748b] text-center leading-normal'>
           Descubrí los Tipos de Cambio para tomar decisiones financieras
           informadas
         </h2>
@@ -42,41 +44,44 @@ export default async function Home() {
       </section>
 
       <section className='my-10'>
-        <div className='border rounded-t-md border-border mt-2.5 flex-1 shadow-sm hover:shadow'>
-          <table className='w-full overflow-auto'>
-            <thead className='[&_tr]:border-b'>
-              <tr className='text-[#64748b]'>
-                <th className='h-12 px-4 text-left align-middle font-medium'>
-                  Casa
-                </th>
-                <th className='h-12 px-4 text-left align-middle font-medium'>
-                  Compra
-                </th>
-                <th className='h-12 px-4 text-left align-middle font-medium'>
-                  Venta
-                </th>
-                <th className='h-12 hidden lg:table-cell lg:px-8 text-left align-middle font-medium'>
-                  Fecha de Actualización
-                </th>
-              </tr>
-            </thead>
-            <tbody className='[&_tr:last-child]:border-0'>
-              {dollarData.map((dollar: DollarData) => (
-                <tr key={dollar.casa}>
-                  <td className='border-b font-semibold truncate p-4 lg:pr-12 align-middle'>{`Dólar ${dollar.nombre}`}</td>
-                  <td className='border-b truncate p-4 lg:pr-12 align-middle'>
-                    {dollar.compra?.toFixed(1)}
-                  </td>
-                  <td className='border-b truncate lg:p-4 pr-12 align-middle'>
-                    {dollar.venta.toFixed(1)}
-                  </td>
-                  <td className='border-b hidden lg:table-cell lg:pr-12 border-0 p-4 lg:px-8 align-middle'>
-                    {convertDate(dollar.fechaActualizacion)}
-                  </td>
+        <div>
+          <h2 className='capitalize font-semibold text-xl'>Tipos de cambio</h2>
+          <div className='border rounded-t-md border-border mt-2.5 flex-1 shadow-sm hover:shadow-md'>
+            <table className='w-full overflow-auto'>
+              <thead className='[&_tr]:border-b'>
+                <tr className='text-[#64748b]'>
+                  <th className='h-12 px-4 text-left align-middle font-medium'>
+                    Casa
+                  </th>
+                  <th className='h-12 px-4 text-left align-middle font-medium'>
+                    Compra
+                  </th>
+                  <th className='h-12 px-4 text-left align-middle font-medium'>
+                    Venta
+                  </th>
+                  <th className='h-12 hidden md:table-cell lg:px-8 text-left align-middle font-medium'>
+                    Fecha de Actualización
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className='[&_tr:last-child]:border-0'>
+                {dollarData.map((dollar: DollarData) => (
+                  <tr key={dollar.casa}>
+                    <td className='border-b font-semibold truncate p-4 lg:pr-12 align-middle'>{`Dólar ${dollar.nombre}`}</td>
+                    <td className='border-b truncate p-4 lg:pr-12 align-middle'>
+                      {dollar.compra?.toFixed(1)}
+                    </td>
+                    <td className='border-b truncate lg:p-4 pr-12 align-middle'>
+                      {dollar.venta.toFixed(1)}
+                    </td>
+                    <td className='border-b hidden md:table-cell lg:pr-12 border-0 p-4 lg:px-8 align-middle'>
+                      {convertDate(dollar.fechaActualizacion)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </main>
