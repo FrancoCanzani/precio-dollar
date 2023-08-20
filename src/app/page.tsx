@@ -2,20 +2,7 @@ import DollarCard from './components/dollarCard';
 import { DollarData } from './utils/types';
 import Header from './components/header';
 import convertDate from './utils/functions/convertDate';
-
-const EXCHANGE_KEY = process.env.EXCHANGE_KEY;
-
-async function getDollarData() {
-  const res = await fetch('https://dolar-api-argentina.vercel.app/v1/dolares', {
-    next: { revalidate: 1800 },
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
-}
+import getDollarData from './utils/functions/getDollarData';
 
 export default async function Home() {
   const dollarData = await getDollarData();
